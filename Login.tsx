@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import type { User, UserRole } from '../types';
 import UserIcon from "./components/icons/UserIcon";
-import { useTheme } from './components/ThemeContext';
+import { useTheme } from "./ThemeContext";
 import QuestionMarkCircleIcon from './components/icons/QuestionMarkCircleIcon';
 import LoginInfoModal from './components/modals/LoginInfoModal';
 import EyeIcon from './components/icons/EyeIcon';
