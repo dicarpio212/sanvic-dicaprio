@@ -6,7 +6,7 @@ const client = new Client();
 
 client
     .setEndpoint('https://cloud.appwrite.io/v1') // Your Appwrite Endpoint
-    .setProject('YOUR_PROJECT_ID'); // Your project ID
+    .setProject('68ef9f1000305edffab9'); // Your project ID
 
 export const account = new Account(client);
 export const databases = new Databases(client);
@@ -16,7 +16,7 @@ export const ID = AppwriteID;
 export const Query = AppwriteQuery;
 
 // Database and Collection IDs
-export const DATABASE_ID = 'YOUR_DATABASE_ID';
+export const DATABASE_ID = 'pajal_db';
 export const USERS_COLLECTION_ID = 'users';
 export const CLASSES_COLLECTION_ID = 'classes';
 export const NOTIFICATIONS_COLLECTION_ID = 'notifications';
