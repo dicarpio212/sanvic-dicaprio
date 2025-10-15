@@ -2,11 +2,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import type { User, UserRole } from '../types';
 import UserIcon from "./components/icons/UserIcon";
-import { useTheme } from '../ThemeContext';
-import QuestionMarkCircleIcon from './icons/QuestionMarkCircleIcon';
-import LoginInfoModal from './modals/LoginInfoModal';
-import EyeIcon from './icons/EyeIcon';
-import EyeSlashIcon from './icons/EyeSlashIcon';
+import { useTheme } from './components/ThemeContext';
+import QuestionMarkCircleIcon from './components/icons/QuestionMarkCircleIcon';
+import LoginInfoModal from './components/modals/LoginInfoModal';
+import EyeIcon from './components/icons/EyeIcon';
+import EyeSlashIcon from './components/icons/EyeSlashIcon';
 import { getAvailableClassTypes } from '../constants';
 
 
