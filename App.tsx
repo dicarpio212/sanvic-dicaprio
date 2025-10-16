@@ -291,7 +291,7 @@ const App: React.FC = () => {
     if (!username.trim()) return "Nama tidak boleh kosong.";
 
     // Email dummy supaya Appwrite mau membuat akun
-    const email = `${username.toLowerCase()}`;
+    const email = `${username.toLowerCase()}@student.ac.id`;
 
     // Password default (minimal 8 karakter)
     const defaultPassword = "Pajal123!";
