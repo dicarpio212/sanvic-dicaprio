@@ -285,32 +285,55 @@ const App: React.FC = () => {
         }
     };
 
-    const handleRegister = async (username: string): Promise<string | null> => {
-        try {
-             // Appwrite uses username as email, ensure it's a valid format for simplicity
-            const email = username.includes('@') ? username : `${username}@pajal.app`;
-            const newUserAccount = await account.create(ID.unique(), email, '1234', username);
-            
-            const newUserDoc: Omit<User, '$id'> = {
-                id: newUserAccount.$id,
-                username: email,
-                role: 'student',
-                name: username.trim(),
-                nim_nip: '',
-                classType: null,
-                profilePic: null,
-                registrationDate: new Date(realtimeDate),
-                isSuspended: false
-            };
-            const createdDoc = await databases.createDocument(DATABASE_ID, USERS_COLLECTION_ID, newUserAccount.$id, newUserDoc);
-            await handleLogin(email, '1234');
-            return null;
-        } catch (error: any) {
-            console.error("Registration failed:", error);
-            if (error.code === 409) return "Username ini sudah digunakan.";
-            return "Gagal mendaftar.";
-        }
+   const handleRegister = async (username: string): Promise<string | null> => {
+  try {
+    // Pastikan username tidak kosong
+    if (!username.trim()) return "Nama tidak boleh kosong.";
+
+    // Email dummy supaya Appwrite mau membuat akun
+    const email = `${username.toLowerCase()}@student.local`;
+
+    // Password default (minimal 8 karakter)
+    const defaultPassword = "12345678";
+
+    // Buat akun Appwrite (hanya dengan nama & password default)
+    const newUserAccount = await account.create(
+      ID.unique(),
+      email,
+      defaultPassword,
+      username
+    );
+
+    // Buat dokumen pengguna di database
+    const newUserDoc: Omit<User, "$id"> = {
+      id: newUserAccount.$id,
+      username: email,
+      role: "student", // default role mahasiswa
+      name: username.trim(),
+      nim_nip: "",
+      classType: null,
+      profilePic: null,
+      registrationDate: new Date(realtimeDate),
+      isSuspended: false,
     };
+
+    await databases.createDocument(
+      DATABASE_ID,
+      USERS_COLLECTION_ID,
+      newUserAccount.$id,
+      newUserDoc
+    );
+
+    // Setelah daftar, langsung login otomatis
+    await handleLogin(email, defaultPassword);
+
+    return null;
+  } catch (error: any) {
+    console.error("Registration failed:", error);
+    if (error.code === 409) return "Nama ini sudah digunakan.";
+    return "Gagal mendaftar.";
+  }
+};
 
     const handleLogout = async () => { 
         await account.deleteSession('current');
