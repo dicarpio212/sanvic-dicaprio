@@ -294,7 +294,7 @@ const App: React.FC = () => {
     const email = `${username.toLowerCase()}`;
 
     // Password default (minimal 8 karakter)
-    const defaultPassword = "pajal123";
+    const defaultPassword = "Pajal123!";
 
     // Buat akun Appwrite (hanya dengan nama & password default)
     const newUserAccount = await account.create(
